@@ -1,4 +1,4 @@
-name: fgs
+name: hello-world
 image: okteto/maven:3
 command: bash
 volumes:

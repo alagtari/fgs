@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fgs
+  name: hello-world
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fgs
+      app: hello-world
   template:
     metadata:
       labels:
-        app: fgs
+        app: hello-world
     spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: api
-        image: okteto/fgs:java-maven
+        image: okteto/hello-world:java-maven
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -25,15 +25,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fgs
+  name: hello-world
   annotations:
     dev.okteto.com/auto-ingress: "true"
   labels:
-    app: fgs
+    app: hello-world
 spec:
   type: ClusterIP
   ports:
-    - name: fgs
+    - name: hello-world
       port: 8080
   selector:
-    app: fgs
+    app: hello-world
