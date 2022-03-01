@@ -11,6 +11,6 @@ public class RestHelloWorld {
 	
 	@GetMapping("/test")
 	public String sayHello() {
-		return "Hello world!";
+		return "Hello world! this is fgs";
 	}
 }
