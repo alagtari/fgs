@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fgs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fgs
+  template:
+    metadata:
+      labels:
+        app: fgs
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: api
+        image: okteto/fgs:java-maven
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fgs
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+  labels:
+    app: fgs
+spec:
+  type: ClusterIP
+  ports:
+    - name: fgs
+      port: 8080
+  selector:
+    app: fgs
