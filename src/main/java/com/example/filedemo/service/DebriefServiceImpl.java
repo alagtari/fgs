@@ -67,7 +67,7 @@ public class DebriefServiceImpl implements DebriefService {
 				if(manipulatedColis.contains(c)) {
 					echange.setEtat(ColisEtat.livre);
 					colisRepository.save(echange);
-					c.setEtat(ColisEtat.enStock);
+					c.setEtat(ColisEtat.retourEchange);
 					colisRepository.save(c);
 				}
 				/*else {
